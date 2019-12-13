@@ -7,22 +7,28 @@ namespace NWayAssocSetChach
 {
     public class CachObj
     {
-        public object Id { get; private set; }
+
+        public int Id { get; private set; }
+        public object Key { get; private set; }
         public object Data { get; private set; }
-        public object AD { get; private set; }
+        public object AD { get;  set; }
+        public bool IsEmpty { get; private set; }
 
         public CachObj()
         {
+            IsEmpty = true;
             Id = 0;
             Data = null;
             AD = 0;
         }
 
-        public CachObj(object id, object data, object ad)
+        public CachObj(object key, object data, object ad, int id)
         {
-            Id = id;
+            Key = key;
             Data = data;
             AD = ad;
+            IsEmpty = false;
+            Id = id;
         }
     }
 }

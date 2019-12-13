@@ -7,7 +7,7 @@ namespace NWayAssocSetChach
 {
     public interface ICacheChangeAlgorithm
     {
-        void GetRemoveIndex(object[] ways, ref int wayIndex, ref int rowSetIndex);
-            
+        int GetEvictedIndex(int startIndex, int endIndex);
+        object GetTimeStamp();
     }
 }
