@@ -13,7 +13,13 @@ namespace TestProject
         {
             
         }
-        public override int customReplacementAlgo(int startIndex, int endIndex)
+        /// <summary>
+        /// Удалять редко используемые данные
+        /// </summary>
+        /// <param name="startIndex"></param>
+        /// <param name="endIndex"></param>
+        /// <returns></returns>
+        public override int CustomReplacementAlgo(int startIndex, int endIndex)
         {
             int lruIndex = startIndex;
             int lruTimestamp = CacheMemory[startIndex].ReplacementMark == null ? 0 : (int)CacheMemory[startIndex].ReplacementMark;
@@ -32,7 +38,7 @@ namespace TestProject
         {
             if (cachObj.ReplacementMark is int)
             {
-                int res = (int)cachObj.ReplacementMark + 1;
+                int res = (int)cachObj.ReplacementMark + 1; //При каждом обращении увеличивать важность этого эелемента
                 return res;
             }
             else if (cachObj.ReplacementMark == null)

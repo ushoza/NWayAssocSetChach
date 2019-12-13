@@ -39,8 +39,8 @@ namespace NWayAssocSetChach
             
             //Получить Id и на его основании кусок массива в котором искать
             int ID = GetHash(key);
-            int startIndex = GetStartIndex(ID);
-            int endIndex = GetEndIndex(startIndex);
+            int startIndex = getStartIndex(ID);
+            int endIndex = getEndIndex(startIndex);
 
 
 
@@ -74,14 +74,13 @@ namespace NWayAssocSetChach
         /// <param name="value"></param>
         public void Put(object key, object value)
         {
-            //Initializing fields
             int emptyIndex = 0;
             Boolean isSingleEntryEmpty = false;
             Boolean cacheUpdated = false;
             //Получить промежуток массива на основе Id
             int ID = GetHash(key);
-            int startIndex = GetStartIndex(ID);
-            int endIndex = GetEndIndex(startIndex);
+            int startIndex = getStartIndex(ID);
+            int endIndex = getEndIndex(startIndex);
 
             CachObj newCacheEntry = new CachObj(key, value, null, ID);
             newCacheEntry.ReplacementMark = GetReplasmentMark(newCacheEntry);
@@ -120,7 +119,7 @@ namespace NWayAssocSetChach
             // Если кеш не был обновлен, значит все строки заняты, почистить строку и положить туда объект
             if (!cacheUpdated)
             {
-                int evictedIndex = getEvictedIndex(startIndex, endIndex);
+                int evictedIndex = getRemoveIndex(startIndex, endIndex);
                 CacheMemory[evictedIndex] = newCacheEntry;
             }
         }
@@ -135,33 +134,33 @@ namespace NWayAssocSetChach
             }
         }
 
-        private int GetStartIndex(int ID)
+        private int getStartIndex(int ID)
         {
             return (ID % setCount) * entryCount;
         }
 
         
-        private int GetEndIndex(int startIndex)
+        private int getEndIndex(int startIndex)
         {
             return startIndex + entryCount - 1;
         }
 
-        private int getEvictedIndex(int startIndex, int endIndex)
+        private int getRemoveIndex(int startIndex, int endIndex)
         {
             switch (replacementAlgo)
             {
                 case EnumAlgorithms.LRU:
                     return lruReplacementAlgo(startIndex, endIndex);
-                    break;
+                    
                 case EnumAlgorithms.MRU:
                     return mruReplacementAlgo(startIndex, endIndex);
-                    break;
+                    
                 case EnumAlgorithms.Castom:
-                    return customReplacementAlgo(startIndex, endIndex);
-                    break;
+                    return CustomReplacementAlgo(startIndex, endIndex);
+                    
                 default:
                     throw new NotSupportedException("Unsupported Replacement alogorithm usage.");
-                    break;
+                    
             }
            
         }
@@ -182,9 +181,6 @@ namespace NWayAssocSetChach
             return lruIndex;
         }
 
-        /*
-        * Implementation of MRU
-        */
         private int mruReplacementAlgo(int startIndex, int endIndex)
         {
             int mruIndex = startIndex;
@@ -201,7 +197,7 @@ namespace NWayAssocSetChach
             return mruIndex;
         }
 
-        public virtual int customReplacementAlgo(int startIndex, int endIndex)
+        public virtual int CustomReplacementAlgo(int startIndex, int endIndex)
         {
             return mruReplacementAlgo(startIndex, endIndex);
         }
