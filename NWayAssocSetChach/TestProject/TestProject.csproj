@@ -66,7 +66,7 @@
     <Compile Include="TestBaseClass.cs" />
     <Compile Include="TestLRU.cs" />
     <Compile Include="TestPerson.cs" />
-    <Compile Include="UserReplacementAlgorithm.cs" />
+    <Compile Include="UserNWayAssociateSetChach.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -8,11 +8,11 @@ namespace NWayAssocSetChach
     public class NWayAssociateSetChach
     {
         public readonly CachObj[] CacheMemory;
-        public readonly ICacheChangeAlgorithm replacementAlgo;
+        public readonly EnumAlgorithms replacementAlgo;
         private readonly int setCount;
         private readonly int entryCount;
 
-        public NWayAssociateSetChach(ICacheChangeAlgorithm changeAlgorithm, int setCount, int rowInSetCount)
+        public NWayAssociateSetChach(EnumAlgorithms changeAlgorithm, int setCount, int rowInSetCount)
         {
             this.setCount = setCount;
             this.entryCount = rowInSetCount;
@@ -36,8 +36,7 @@ namespace NWayAssocSetChach
             Object data = null;
             int emptyIndex = 0;
             Boolean isSingleEntryEmpty = false;
-            Boolean cacheUpdated = false;
-
+            
             //Получить Id и на его основании кусок массива в котором искать
             int ID = GetHash(key);
             int startIndex = GetStartIndex(ID);
@@ -59,25 +58,13 @@ namespace NWayAssocSetChach
                 if (CacheMemory[i].Id == ID)
                 {
                     data = CacheMemory[i].Data;
-                    CacheMemory[i].AD = replacementAlgo.GetReplasmentMark(CacheMemory[i]);
-                    cacheUpdated = true;
+                    CacheMemory[i].ReplacementMark = GetReplasmentMark(CacheMemory[i]);
+                    
                     break;
                 }
             }
 
-            // Если есть свободные строки в наборе, пометить кеш обновленным
-            if (isSingleEntryEmpty)
-            {
-                cacheUpdated = true;
-            }
-
-            //// Если кеш не был обновлен, значит все строки заняты, почистить строку
-            //if (!cacheUpdated)
-            //{
-            //    int evictedIndex = replacementAlgo.GetEvictedIndex(startIndex, endIndex, CacheMemory);
-            //    CacheMemory[evictedIndex] = new CachObj();
-            //}
-
+          
             return data;
         }
         /// <summary>
@@ -97,7 +84,7 @@ namespace NWayAssocSetChach
             int endIndex = GetEndIndex(startIndex);
 
             CachObj newCacheEntry = new CachObj(key, value, null, ID);
-            newCacheEntry.AD = replacementAlgo.GetReplasmentMark(newCacheEntry);
+            newCacheEntry.ReplacementMark = GetReplasmentMark(newCacheEntry);
 
             for (int i = startIndex; i <= endIndex; i++)
             {
@@ -133,7 +120,7 @@ namespace NWayAssocSetChach
             // Если кеш не был обновлен, значит все строки заняты, почистить строку и положить туда объект
             if (!cacheUpdated)
             {
-                int evictedIndex = replacementAlgo.GetEvictedIndex(startIndex, endIndex, CacheMemory);
+                int evictedIndex = getEvictedIndex(startIndex, endIndex);
                 CacheMemory[evictedIndex] = newCacheEntry;
             }
         }
@@ -157,6 +144,77 @@ namespace NWayAssocSetChach
         private int GetEndIndex(int startIndex)
         {
             return startIndex + entryCount - 1;
+        }
+
+        private int getEvictedIndex(int startIndex, int endIndex)
+        {
+            switch (replacementAlgo)
+            {
+                case EnumAlgorithms.LRU:
+                    return lruReplacementAlgo(startIndex, endIndex);
+                    break;
+                case EnumAlgorithms.MRU:
+                    return mruReplacementAlgo(startIndex, endIndex);
+                    break;
+                case EnumAlgorithms.Castom:
+                    return customReplacementAlgo(startIndex, endIndex);
+                    break;
+                default:
+                    throw new NotSupportedException("Unsupported Replacement alogorithm usage.");
+                    break;
+            }
+           
+        }
+
+        private int lruReplacementAlgo(int startIndex, int endIndex)
+        {
+            int lruIndex = startIndex;
+            long lruTimestamp = (long)CacheMemory[startIndex].ReplacementMark;
+            for (int i = startIndex; i <= endIndex; i++)
+            {
+                long currentTimestamp = (long)CacheMemory[i].ReplacementMark;
+                if (lruTimestamp > currentTimestamp)
+                {
+                    lruIndex = i;
+                    lruTimestamp = currentTimestamp;
+                }
+            }
+            return lruIndex;
+        }
+
+        /*
+        * Implementation of MRU
+        */
+        private int mruReplacementAlgo(int startIndex, int endIndex)
+        {
+            int mruIndex = startIndex;
+            long mruTimestamp = (long)CacheMemory[startIndex].ReplacementMark;
+            for (int i = startIndex; i <= endIndex; i++)
+            {
+                long currentTimestamp = (long)CacheMemory[i].ReplacementMark;
+                if (mruTimestamp < currentTimestamp)
+                {
+                    mruIndex = i;
+                    mruTimestamp = currentTimestamp;
+                }
+            }
+            return mruIndex;
+        }
+
+        public virtual int customReplacementAlgo(int startIndex, int endIndex)
+        {
+            return mruReplacementAlgo(startIndex, endIndex);
+        }
+
+        private long getCurrentTime()
+        {
+            long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+            return milliseconds;
+        }
+
+        public virtual object GetReplasmentMark(CachObj cachObj)
+        {
+            return getCurrentTime();
         }
 
     }

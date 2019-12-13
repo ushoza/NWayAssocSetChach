@@ -16,14 +16,14 @@ namespace TestProject
     [TestFixture]
     public class TestBaseLogic
     {
-        ICacheChangeAlgorithm algo;
+        //ICacheChangeAlgorithm algo;
         NWayAssociateSetChach cache;
 
         [SetUp]
         public void Init()
         {
-            algo = new LRUreplacementAlgorithm();
-            cache = new NWayAssociateSetChach(algo, 3, 8);
+           // algo = new LRUreplacementAlgorithm();
+            cache = new NWayAssociateSetChach(EnumAlgorithms.LRU, 3, 8);
             TestPerson person = new TestPerson("petrov", "Петров П.П.");
             cache.Put(person.NickName, person);
             person = new TestPerson("sidorov", "Сидоров П.П.");

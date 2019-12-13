@@ -14,8 +14,8 @@ namespace TestProject
         [Test]
         public void TestMethodDelLastAdded()
         {
-            ICacheChangeAlgorithm algo = new LRUreplacementAlgorithm();
-            NWayAssociateSetChach cache = new NWayAssociateSetChach(algo, 4, 2);
+            //ICacheChangeAlgorithm algo = new LRUreplacementAlgorithm();
+            NWayAssociateSetChach cache = new NWayAssociateSetChach(EnumAlgorithms.LRU, 4, 2);
             TestPerson personIvanov = new TestPerson("ivanov", "Иванов И.И.");
             cache.Put(personIvanov.NickName, personIvanov);
             System.Threading.Thread.Sleep(50);
@@ -33,8 +33,8 @@ namespace TestProject
         [Test]
         public void TestMethodDelResentAdded()
         {
-            ICacheChangeAlgorithm algo = new MRUreplacementAlgorithm();
-            NWayAssociateSetChach cache = new NWayAssociateSetChach(algo, 4, 2);
+            //ICacheChangeAlgorithm algo = new MRUreplacementAlgorithm();
+            NWayAssociateSetChach cache = new NWayAssociateSetChach(EnumAlgorithms.MRU, 4, 2);
             TestPerson personIvanov = new TestPerson("ivanov", "Иванов И.И.");
             cache.Put(personIvanov.NickName, personIvanov);
             System.Threading.Thread.Sleep(50);
@@ -52,8 +52,8 @@ namespace TestProject
         [Test]
         public void TestUserAlgorithm()
         {
-            ICacheChangeAlgorithm algo = new UserReplacementAlgorithm();
-            NWayAssociateSetChach cache = new NWayAssociateSetChach(algo, 4, 2);
+            //ICacheChangeAlgorithm algo = new UserReplacementAlgorithm();
+            NWayAssociateSetChach cache = new UserNWayAssociateSetChach(4, 2, EnumAlgorithms.Castom);
             TestPerson personIvanov = new TestPerson("ivanov", "Иванов И.И.");
             cache.Put(personIvanov.NickName, personIvanov);
             System.Threading.Thread.Sleep(50);

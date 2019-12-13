@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWayAssocSetChach", "NWayAssocSetChach\NWayAssocSetChach.csproj", "{7A409674-162C-44DE-A817-0921B42058FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectForFeatureVertInt", "TestProject\TestProjectForFeatureVertInt.csproj", "{F0A1633A-2CCF-4979-B737-D0EB50E1EDD4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{F0A1633A-2CCF-4979-B737-D0EB50E1EDD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

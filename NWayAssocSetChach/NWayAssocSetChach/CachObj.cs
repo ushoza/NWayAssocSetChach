@@ -11,7 +11,7 @@ namespace NWayAssocSetChach
         public int Id { get; private set; }
         public object Key { get; private set; }
         public object Data { get; private set; }
-        public object AD { get;  set; }
+        public object ReplacementMark { get;  set; }
         public bool IsEmpty { get; private set; }
 
         public CachObj()
@@ -19,14 +19,14 @@ namespace NWayAssocSetChach
             IsEmpty = true;
             Id = 0;
             Data = null;
-            AD = 0;
+            ReplacementMark = 0;
         }
 
-        public CachObj(object key, object data, object ad, int id)
+        public CachObj(object key, object data, object rm, int id)
         {
             Key = key;
             Data = data;
-            AD = ad;
+            ReplacementMark = rm;
             IsEmpty = false;
             Id = id;
         }

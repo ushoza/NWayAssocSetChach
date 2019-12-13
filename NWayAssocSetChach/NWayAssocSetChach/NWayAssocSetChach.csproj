@@ -41,9 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CachObj.cs" />
-    <Compile Include="ICacheChangeAlgorithm.cs" />
-    <Compile Include="LRUreplacementAlgorithm.cs" />
-    <Compile Include="MRUreplacementAlgorithm.cs" />
+    <Compile Include="EnumAlgorithms.cs" />
     <Compile Include="NWayAssociateSetChach.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
