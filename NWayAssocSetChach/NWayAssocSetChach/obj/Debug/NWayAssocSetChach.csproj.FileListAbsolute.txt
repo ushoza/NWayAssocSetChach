@@ -1,0 +1,6 @@
+D:\WORK\GITHUB\NWayAssocSetChach\NWayAssocSetChach\NWayAssocSetChach\NWayAssocSetChach\bin\Debug\NWayAssocSetChach.dll
+D:\WORK\GITHUB\NWayAssocSetChach\NWayAssocSetChach\NWayAssocSetChach\NWayAssocSetChach\bin\Debug\NWayAssocSetChach.pdb
+D:\WORK\GITHUB\NWayAssocSetChach\NWayAssocSetChach\NWayAssocSetChach\NWayAssocSetChach\obj\Debug\NWayAssocSetChach.csprojAssemblyReference.cache
+D:\WORK\GITHUB\NWayAssocSetChach\NWayAssocSetChach\NWayAssocSetChach\NWayAssocSetChach\obj\Debug\NWayAssocSetChach.csproj.CoreCompileInputs.cache
+D:\WORK\GITHUB\NWayAssocSetChach\NWayAssocSetChach\NWayAssocSetChach\NWayAssocSetChach\obj\Debug\NWayAssocSetChach.dll
+D:\WORK\GITHUB\NWayAssocSetChach\NWayAssocSetChach\NWayAssocSetChach\NWayAssocSetChach\obj\Debug\NWayAssocSetChach.pdb

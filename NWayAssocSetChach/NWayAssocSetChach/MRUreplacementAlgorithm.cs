@@ -23,7 +23,7 @@ namespace NWayAssocSetChach
             return mruIndex;
         }
 
-        public object GetTimeStamp()
+        public object GetReplasmentMark(CachObj cachObj)
         {
             long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             return milliseconds;

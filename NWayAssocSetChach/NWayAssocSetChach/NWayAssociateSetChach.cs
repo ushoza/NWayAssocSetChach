@@ -23,7 +23,7 @@ namespace NWayAssocSetChach
 
         public virtual int GetHash(object key)
         {
-            return key.GetHashCode();
+            return Math.Abs(key.GetHashCode());
         }
         /// <summary>
         /// Получить данные из кеша
@@ -59,7 +59,7 @@ namespace NWayAssocSetChach
                 if (CacheMemory[i].Id == ID)
                 {
                     data = CacheMemory[i].Data;
-                    CacheMemory[i].AD = replacementAlgo.GetTimeStamp();
+                    CacheMemory[i].AD = replacementAlgo.GetReplasmentMark(CacheMemory[i]);
                     cacheUpdated = true;
                     break;
                 }
@@ -71,12 +71,12 @@ namespace NWayAssocSetChach
                 cacheUpdated = true;
             }
 
-            // Если кеш не был обновлен, значит все строки заняты, почистить строку
-            if (!cacheUpdated)
-            {
-                int evictedIndex = replacementAlgo.GetEvictedIndex(startIndex, endIndex);
-                CacheMemory[evictedIndex] = new CachObj();
-            }
+            //// Если кеш не был обновлен, значит все строки заняты, почистить строку
+            //if (!cacheUpdated)
+            //{
+            //    int evictedIndex = replacementAlgo.GetEvictedIndex(startIndex, endIndex, CacheMemory);
+            //    CacheMemory[evictedIndex] = new CachObj();
+            //}
 
             return data;
         }
@@ -96,7 +96,8 @@ namespace NWayAssocSetChach
             int startIndex = GetStartIndex(ID);
             int endIndex = GetEndIndex(startIndex);
 
-            CachObj newCacheEntry = new CachObj(key, value, replacementAlgo.GetTimeStamp(), ID);
+            CachObj newCacheEntry = new CachObj(key, value, null, ID);
+            newCacheEntry.AD = replacementAlgo.GetReplasmentMark(newCacheEntry);
 
             for (int i = startIndex; i <= endIndex; i++)
             {
@@ -132,7 +133,7 @@ namespace NWayAssocSetChach
             // Если кеш не был обновлен, значит все строки заняты, почистить строку и положить туда объект
             if (!cacheUpdated)
             {
-                int evictedIndex = replacementAlgo.GetEvictedIndex(startIndex, endIndex);
+                int evictedIndex = replacementAlgo.GetEvictedIndex(startIndex, endIndex, CacheMemory);
                 CacheMemory[evictedIndex] = newCacheEntry;
             }
         }
