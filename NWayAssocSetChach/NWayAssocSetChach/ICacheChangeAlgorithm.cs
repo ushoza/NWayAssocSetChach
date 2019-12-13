@@ -7,7 +7,7 @@ namespace NWayAssocSetChach
 {
     public interface ICacheChangeAlgorithm
     {
-        int GetEvictedIndex(int startIndex, int endIndex);
+        int GetEvictedIndex(int startIndex, int endIndex, CachObj[] CacheMemory);
         object GetTimeStamp();
     }
 }
