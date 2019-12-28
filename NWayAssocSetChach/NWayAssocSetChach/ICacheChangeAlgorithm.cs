@@ -5,9 +5,10 @@ using System.Text;
 
 namespace NWayAssocSetChach
 {
-    public interface ICacheChangeAlgorithm
-    {
-        int GetEvictedIndex(int startIndex, int endIndex, CachObj[] CacheMemory);
-        object GetReplasmentMark(CachObj cachObj);
-    }
+    //public interface ICacheChangeAlgorithm<T>
+    //{
+
+    //    //int GetEvictedIndex(int startIndex, int endIndex, CacheObj[] CacheMemory);
+    //    //object GetReplasmentMark(CacheObj cachObj);
+    //}
 }

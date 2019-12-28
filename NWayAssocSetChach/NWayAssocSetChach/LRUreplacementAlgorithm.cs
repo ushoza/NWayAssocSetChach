@@ -7,7 +7,7 @@ namespace NWayAssocSetChach
 {
     public class LRUreplacementAlgorithm : ICacheChangeAlgorithm
     {
-        public int GetEvictedIndex(int startIndex, int endIndex, CachObj[] CacheMemory)
+        public int GetEvictedIndex(int startIndex, int endIndex, CacheObj[] CacheMemory)
         {
             int lruIndex = startIndex;
             long lruTimestamp = (long)CacheMemory[startIndex].AD;
@@ -23,7 +23,7 @@ namespace NWayAssocSetChach
             return lruIndex;
         }
 
-        public object GetReplasmentMark(CachObj cachObj)
+        public object GetReplasmentMark(CacheObj cachObj)
         {
             long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             return milliseconds;

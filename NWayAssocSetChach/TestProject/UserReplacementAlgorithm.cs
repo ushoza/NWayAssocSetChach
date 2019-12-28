@@ -10,7 +10,7 @@ namespace TestProject
 {
     public class UserReplacementAlgorithm : ICacheChangeAlgorithm
     {
-        public int GetEvictedIndex(int startIndex, int endIndex, CachObj[] CacheMemory)
+        public int GetEvictedIndex(int startIndex, int endIndex, CacheObj[] CacheMemory)
         {
             int lruIndex = startIndex;
             int lruTimestamp = CacheMemory[startIndex].AD == null ? 0 : (int)CacheMemory[startIndex].AD;
@@ -26,7 +26,7 @@ namespace TestProject
             return lruIndex;
         }
 
-        public object GetReplasmentMark(CachObj cachObj)
+        public object GetReplasmentMark(CacheObj cachObj)
         {
             
             if(cachObj.AD is int)

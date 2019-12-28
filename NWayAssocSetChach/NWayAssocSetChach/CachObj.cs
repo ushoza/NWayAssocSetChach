@@ -5,30 +5,46 @@ using System.Text;
 
 namespace NWayAssocSetChach
 {
-    public class CachObj
+    //public class CacheObj
+    //{
+
+    //    public int Id { get; private set; }
+    //    public object Key { get; private set; }
+    //    public object Data { get; private set; }
+    //    public object AD { get;  set; }
+    //    public bool IsEmpty { get; private set; }
+
+    //    public CacheObj()
+    //    {
+    //        IsEmpty = true;
+    //        Id = 0;
+    //        Data = null;
+    //        AD = 0;
+    //    }
+
+    //    public CacheObj(object key, object data, object ad, int id)
+    //    {
+    //        Key = key;
+    //        Data = data;
+    //        AD = ad;
+    //        IsEmpty = false;
+    //        Id = id;
+    //    }
+    //}
+    public class CacheObj<T,V, M>
     {
-
         public int Id { get; private set; }
-        public object Key { get; private set; }
-        public object Data { get; private set; }
-        public object AD { get;  set; }
-        public bool IsEmpty { get; private set; }
+        public T Key { get; private set; }
+        public V Value { get; set; }
+        public M Mark { get; set; }
 
-        public CachObj()
+        public CacheObj(T key, V value, M mark)
         {
-            IsEmpty = true;
-            Id = 0;
-            Data = null;
-            AD = 0;
-        }
-
-        public CachObj(object key, object data, object ad, int id)
-        {
+            Id = Math.Abs(key.GetHashCode());
             Key = key;
-            Data = data;
-            AD = ad;
-            IsEmpty = false;
-            Id = id;
+            Value = value;
+            Mark = mark;
         }
+        
     }
 }
