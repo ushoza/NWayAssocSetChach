@@ -5,16 +5,17 @@ using System.Text;
 
 namespace NWayAssocSetChach
 {
-    public class NWayAssociateSetChache<T,V> 
+    public class NWayAssociateSetChache<T,V,M> 
     {
-        CacheObj<T, V>[,] cacheMemory;
-        IAlgorithm algorithm;
+        CacheObj<T, V, M>[,] cacheMemory;
+        //IAlgorithm algorithm;
+        IGenericAlgo<M> algorithm;
         int rows;
         int cols;
-        public NWayAssociateSetChache(int cols, int rows, IAlgorithm algorithm)
+        public NWayAssociateSetChache(int cols, int rows, IGenericAlgo<M> algorithm)
         {
             this.algorithm = algorithm;
-            cacheMemory = new CacheObj<T, V>[rows, cols];
+            cacheMemory = new CacheObj<T, V, M>[rows, cols];
             this.rows = rows;
             this.cols = cols;
 
@@ -45,6 +46,7 @@ namespace NWayAssocSetChach
                 if (cacheMemory[r, i]?.Id == id)
                 {
                     IsFound = true;
+                    //cacheMemory[r, i].Mark = algorithm.GetReplacementMark(cacheMemory[r, i].Mark);
                     cacheMemory[r, i].Mark = algorithm.GetReplacementMark(cacheMemory[r, i].Mark);
                     cacheMemory[r, i].Value = value;
                 }
@@ -58,20 +60,20 @@ namespace NWayAssocSetChach
                     if (cacheMemory[r, i] == null)
                     {
                         isFoundFreePlace = true;
-                        cacheMemory[r, i] = new CacheObj<T, V>(key, value, default(object));
+                        cacheMemory[r, i] = new CacheObj<T, V, M>(key, value, default(M));
                         cacheMemory[r, i].Mark = algorithm.GetReplacementMark(cacheMemory[r, i].Mark);
                     }
                 }
             }
             if(!isFoundFreePlace)
             {
-                object[] ms = new object[cols];
+                M[] ms = new M[cols];
                 for (int i = 0; i < cols; i++)
                 {
                     ms[i] = cacheMemory[r, i].Mark;
                 }
                 int removeIndex = algorithm.GetRemoveIndex(ms);
-                cacheMemory[r, removeIndex] = new CacheObj<T, V>(key, value, default(object));
+                cacheMemory[r, removeIndex] = new CacheObj<T, V, M>(key, value, default(M));
                 cacheMemory[r, removeIndex].Mark = algorithm.GetReplacementMark(cacheMemory[r, removeIndex].Mark);
             }
         }

@@ -5,9 +5,9 @@ using System.Text;
 
 namespace NWayAssocSetChach
 {
-    public  interface IAlgorithm
+    public interface IGenericAlgo<T>
     {
-        int GetRemoveIndex(object[] ms);
-        object GetReplacementMark(object prevMark);
+        int GetRemoveIndex(T[] ms);
+        T GetReplacementMark(T prevMark);
     }
 }

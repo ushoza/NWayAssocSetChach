@@ -16,15 +16,15 @@ namespace TestProject
     [TestFixture]
     public class TestBaseLogic
     {
-        IAlgorithm algo;
-        NWayAssocSetChach.NWayAssociateSetChache<string, TestPerson> cache;
+        IGenericAlgo<long> algo;
+        NWayAssocSetChach.NWayAssociateSetChache<string, TestPerson, long> cache;
 
         [SetUp]
         public void Init()
         {
-            algo = new LRUreplacementAlgorithm();
+            algo = new GLru();
             cache =
-                new NWayAssocSetChach.NWayAssociateSetChache<string, TestPerson>(2, 5, algo);
+                new NWayAssocSetChach.NWayAssociateSetChache<string, TestPerson, long>(2, 5, algo);
             cache.Put("petrov", new TestPerson("petrov", "Петров П.П."));
             cache.Put("ivanov", new TestPerson("ivanov", "Иванов И.И."));
             cache.Put("sidorov", new TestPerson("sidorov", "Сидоров С.С."));

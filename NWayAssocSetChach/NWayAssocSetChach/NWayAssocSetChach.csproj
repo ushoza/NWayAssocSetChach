@@ -40,10 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAlgorithm.cs" />
+    <Compile Include="GLru.cs" />
+    <Compile Include="GMru.cs" />
     <Compile Include="CachObj.cs" />
-    <Compile Include="LRUreplacementAlgorithm.cs" />
-    <Compile Include="MRUreplacementAlgorithm.cs" />
+    <Compile Include="IGenericAlgo.cs" />
     <Compile Include="NWayAssociateSetChach.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

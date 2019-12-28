@@ -5,15 +5,15 @@ using System.Text;
 
 namespace NWayAssocSetChach
 {
-    public class MRUreplacementAlgorithm : IAlgorithm
+    public class GMru : IGenericAlgo<long>
     {
-        public int GetRemoveIndex(object[] ms)
+        public int GetRemoveIndex(long[] ms)
         {
             int mruIndex = 0;
-            long mruTimestamp = (long)ms[0];
+            long mruTimestamp = ms[0];
             for (int i = 0; i < ms.Length; i++)
             {
-                long currentTimestamp = (long)ms[i];
+                long currentTimestamp = ms[i];
                 if (mruTimestamp < currentTimestamp)
                 {
                     mruIndex = i;
@@ -23,7 +23,7 @@ namespace NWayAssocSetChach
             return mruIndex;
         }
 
-        public object GetReplacementMark(object m)
+        public long GetReplacementMark(long prevMark)
         {
             long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             return milliseconds;

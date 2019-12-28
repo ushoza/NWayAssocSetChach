@@ -9,15 +9,16 @@ using System.Threading.Tasks;
 namespace TestProject
 {
     
-    public class UserReplacementAlgorithm : IAlgorithm
+    public class UserReplacementAlgorithm : IGenericAlgo<int>
     {
-        public int GetRemoveIndex(object[] ms)
+        
+        public int GetRemoveIndex(int[] ms)
         {
             int lruIndex = 0;
-            int lruTimestamp = (int)ms[0];
+            int lruTimestamp = ms[0];
             for (int i = 0; i < ms.Length; i++)
             {
-                int currentTimestamp = (int)ms[i];
+                int currentTimestamp = ms[i];
                 if (currentTimestamp < lruTimestamp)
                 {
                     lruIndex = i;
@@ -27,21 +28,13 @@ namespace TestProject
             return lruIndex;
         }
 
-        public object GetReplacementMark(object prevMark)
+
+        public int GetReplacementMark(int prevMark)
         {
-            if (prevMark is int)
-            {
-                int res = (int)prevMark + 1;
-                return res;
-            }
-            else if (prevMark == null)
-            {
-                return 0;
-            }
-            else
-            {
-                return prevMark;
-            }
+          int res = prevMark + 1;
+          return res;
+           
+           
         }
     }
 }

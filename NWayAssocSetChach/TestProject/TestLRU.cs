@@ -14,8 +14,8 @@ namespace TestProject
         [Test]
         public void TestMethodDelLastAdded()
         {
-            IAlgorithm algo = new LRUreplacementAlgorithm();
-            NWayAssociateSetChache<string, TestPerson> cache = new NWayAssociateSetChache<string, TestPerson>(2, 4, algo);
+            IGenericAlgo<long> algo = new GLru();
+            NWayAssociateSetChache<string, TestPerson, long> cache = new NWayAssociateSetChache<string, TestPerson, long>(2, 4, algo);
             TestPerson personIvanov = new TestPerson("ivanov", "Иванов И.И.");
             cache.Put(personIvanov.NickName, personIvanov);
             System.Threading.Thread.Sleep(50);
@@ -33,8 +33,8 @@ namespace TestProject
         [Test]
         public void TestMethodDelResentAdded()
         {
-            IAlgorithm algo = new MRUreplacementAlgorithm();
-            NWayAssociateSetChache<string, TestPerson> cache = new NWayAssociateSetChache<string, TestPerson>(2, 4, algo);
+            IGenericAlgo<long> algo = new GMru();
+            NWayAssociateSetChache<string, TestPerson, long> cache = new NWayAssociateSetChache<string, TestPerson, long>(2, 4, algo);
             TestPerson personIvanov = new TestPerson("ivanov", "Иванов И.И.");
             cache.Put(personIvanov.NickName, personIvanov);
             System.Threading.Thread.Sleep(50);
@@ -52,8 +52,8 @@ namespace TestProject
         [Test]
         public void TestUserAlgorithm()
         {
-            IAlgorithm algo = new UserReplacementAlgorithm();
-            NWayAssociateSetChache<string, TestPerson> cache = new NWayAssociateSetChache<string, TestPerson>(2, 4, algo);
+            IGenericAlgo<int> algo = new UserReplacementAlgorithm();
+            NWayAssociateSetChache<string, TestPerson, int> cache = new NWayAssociateSetChache<string, TestPerson, int>(2, 4, algo);
             TestPerson personIvanov = new TestPerson("ivanov", "Иванов И.И.");
             cache.Put(personIvanov.NickName, personIvanov);
             System.Threading.Thread.Sleep(50);

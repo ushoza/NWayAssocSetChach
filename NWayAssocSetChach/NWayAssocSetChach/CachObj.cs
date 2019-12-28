@@ -5,14 +5,14 @@ using System.Text;
 
 namespace NWayAssocSetChach
 {
-    public class CacheObj<T,V>
+    public class CacheObj<T,V, M>
     {
         public int Id { get; private set; }
         public T Key { get; private set; }
         public V Value { get; set; }
-        public object Mark { get; set; }
+        public M Mark { get; set; }
 
-        public CacheObj(T key, V value, object mark)
+        public CacheObj(T key, V value, M mark)
         {
             Id = Math.Abs(key.GetHashCode());
             Key = key;
