@@ -5,15 +5,40 @@ using System.Text;
 
 namespace NWayAssocSetChach
 {
-    public class LRUreplacementAlgorithm : ICacheChangeAlgorithm
+    //public class LRUreplacementAlgorithm : ICacheChangeAlgorithm
+    //{
+    //    public int GetEvictedIndex(int startIndex, int endIndex, CacheObj[] CacheMemory)
+    //    {
+    //        int lruIndex = startIndex;
+    //        long lruTimestamp = (long)CacheMemory[startIndex].AD;
+    //        for (int i = startIndex; i <= endIndex; i++)
+    //        {
+    //            long currentTimestamp = (long)CacheMemory[i].AD;
+    //            if (lruTimestamp > currentTimestamp)
+    //            {
+    //                lruIndex = i;
+    //                lruTimestamp = currentTimestamp;
+    //            }
+    //        }
+    //        return lruIndex;
+    //    }
+
+    //    public object GetReplasmentMark(CacheObj cachObj)
+    //    {
+    //        long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+    //        return milliseconds;
+    //    }
+    //}
+
+    public class LRUreplacementAlgorithm : IAlgorithm
     {
-        public int GetEvictedIndex(int startIndex, int endIndex, CacheObj[] CacheMemory)
+        public int GetRemoveIndex(object[] ms)
         {
-            int lruIndex = startIndex;
-            long lruTimestamp = (long)CacheMemory[startIndex].AD;
-            for (int i = startIndex; i <= endIndex; i++)
+            int lruIndex = 0;
+            long lruTimestamp = (long)ms[0];
+            for (int i = 0; i < ms.Length; i++)
             {
-                long currentTimestamp = (long)CacheMemory[i].AD;
+                long currentTimestamp = (long)ms[i];
                 if (lruTimestamp > currentTimestamp)
                 {
                     lruIndex = i;
@@ -23,10 +48,12 @@ namespace NWayAssocSetChach
             return lruIndex;
         }
 
-        public object GetReplasmentMark(CacheObj cachObj)
+
+        object IAlgorithm.GetReplacementMark(object m)
         {
             long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             return milliseconds;
         }
+
     }
 }

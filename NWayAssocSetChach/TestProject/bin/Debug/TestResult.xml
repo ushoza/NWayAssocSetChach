@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="D:\WORK\GITHUB\NWayAssocSetChach\NWayAssocSetChach\NWayAssocSetChach\TestProject\bin\Debug\TestProjectForFeatureVertInt.exe" total="5" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2019-12-13" time="11:18:10">
+<test-results name="D:\WORK\GITHUB\NWayAssocSetChach\NWayAssocSetChach\NWayAssocSetChach\TestProject\bin\Debug\TestProjectForFeatureVertInt.exe" total="5" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2019-12-28" time="17:41:30">
   <environment nunit-version="2.5.10.11092" clr-version="4.0.30319.42000" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="D:\WORK\GITHUB\NWayAssocSetChach\NWayAssocSetChach\NWayAssocSetChach\TestProject\bin\Debug" machine-name="PYATAK" user="pyatak" user-domain="ASCON-CHEL" />
   <culture-info current-culture="ru-RU" current-uiculture="ru-RU" />
-  <test-suite type="Assembly" name="D:\WORK\GITHUB\NWayAssocSetChach\NWayAssocSetChach\NWayAssocSetChach\TestProject\bin\Debug\TestProjectForFeatureVertInt.exe" executed="True" result="Success" success="True" time="32.424" asserts="0">
+  <test-suite type="Assembly" name="D:\WORK\GITHUB\NWayAssocSetChach\NWayAssocSetChach\NWayAssocSetChach\TestProject\bin\Debug\TestProjectForFeatureVertInt.exe" executed="True" result="Success" success="True" time="0.353" asserts="0">
     <results>
-      <test-suite type="Namespace" name="TestProject" executed="True" result="Success" success="True" time="32.417" asserts="0">
+      <test-suite type="Namespace" name="TestProject" executed="True" result="Success" success="True" time="0.346" asserts="0">
         <results>
-          <test-suite type="TestFixture" name="TestAlgorithms" executed="True" result="Success" success="True" time="31.021" asserts="0">
+          <test-suite type="TestFixture" name="TestAlgorithms" executed="True" result="Success" success="True" time="0.339" asserts="0">
             <results>
               <test-case name="TestProject.TestAlgorithms.TestMethodDelLastAdded" executed="True" result="Success" success="True" time="0.120" asserts="3" />
               <test-case name="TestProject.TestAlgorithms.TestMethodDelResentAdded" executed="True" result="Success" success="True" time="0.103" asserts="3" />
-              <test-case name="TestProject.TestAlgorithms.TestUserAlgorithm" executed="True" result="Success" success="True" time="30.784" asserts="3" />
+              <test-case name="TestProject.TestAlgorithms.TestUserAlgorithm" executed="True" result="Success" success="True" time="0.103" asserts="3" />
             </results>
           </test-suite>
-          <test-suite type="TestFixture" name="TestBaseLogic" executed="True" result="Success" success="True" time="1.393" asserts="0">
+          <test-suite type="TestFixture" name="TestBaseLogic" executed="True" result="Success" success="True" time="0.003" asserts="0">
             <results>
-              <test-case name="TestProject.TestBaseLogic.TestMethodGetNull" executed="True" result="Success" success="True" time="1.380" asserts="1" />
-              <test-case name="TestProject.TestBaseLogic.TestMethodPutGet" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+              <test-case name="TestProject.TestBaseLogic.TestMethodGet" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+              <test-case name="TestProject.TestBaseLogic.TestMethodGetNull" executed="True" result="Success" success="True" time="0.001" asserts="1" />
             </results>
           </test-suite>
         </results>

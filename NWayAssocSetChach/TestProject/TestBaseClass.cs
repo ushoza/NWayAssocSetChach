@@ -16,25 +16,24 @@ namespace TestProject
     [TestFixture]
     public class TestBaseLogic
     {
-        ICacheChangeAlgorithm algo;
-        NWayAssociateSetChach cache;
+        IAlgorithm algo;
+        NWayAssocSetChach.NWayAssociateSetChache<string, TestPerson> cache;
 
         [SetUp]
         public void Init()
         {
             algo = new LRUreplacementAlgorithm();
-            cache = new NWayAssociateSetChach(algo, 3, 8);
-            TestPerson person = new TestPerson("petrov", "Петров П.П.");
-            cache.Put(person.NickName, person);
-            person = new TestPerson("sidorov", "Сидоров П.П.");
-            cache.Put(person.NickName, person);
+            cache =
+                new NWayAssocSetChach.NWayAssociateSetChache<string, TestPerson>(2, 5, algo);
+            cache.Put("petrov", new TestPerson("petrov", "Петров П.П."));
+            cache.Put("ivanov", new TestPerson("ivanov", "Иванов И.И."));
+            cache.Put("sidorov", new TestPerson("sidorov", "Сидоров С.С."));
         }
         [Test]
-        public void TestMethodPutGet()
+        public void TestMethodGet()
         {
-            TestPerson person = new TestPerson("SomeNickname", "Иванов И.И.");
-            cache.Put(person.NickName, person);
-            Assert.That(cache.Get("SomeNickname").Equals(person));
+            TestPerson person = new TestPerson("petrov", "Петров П.П.");
+            Assert.That(cache.Get("petrov").Equals(person));
         }
       
 
