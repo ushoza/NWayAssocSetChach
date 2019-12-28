@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="IAlgorithm.cs" />
     <Compile Include="CachObj.cs" />
-    <Compile Include="ICacheChangeAlgorithm.cs" />
     <Compile Include="LRUreplacementAlgorithm.cs" />
     <Compile Include="MRUreplacementAlgorithm.cs" />
     <Compile Include="NWayAssociateSetChach.cs" />

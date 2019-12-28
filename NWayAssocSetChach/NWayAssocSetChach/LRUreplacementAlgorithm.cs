@@ -5,31 +5,6 @@ using System.Text;
 
 namespace NWayAssocSetChach
 {
-    //public class LRUreplacementAlgorithm : ICacheChangeAlgorithm
-    //{
-    //    public int GetEvictedIndex(int startIndex, int endIndex, CacheObj[] CacheMemory)
-    //    {
-    //        int lruIndex = startIndex;
-    //        long lruTimestamp = (long)CacheMemory[startIndex].AD;
-    //        for (int i = startIndex; i <= endIndex; i++)
-    //        {
-    //            long currentTimestamp = (long)CacheMemory[i].AD;
-    //            if (lruTimestamp > currentTimestamp)
-    //            {
-    //                lruIndex = i;
-    //                lruTimestamp = currentTimestamp;
-    //            }
-    //        }
-    //        return lruIndex;
-    //    }
-
-    //    public object GetReplasmentMark(CacheObj cachObj)
-    //    {
-    //        long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-    //        return milliseconds;
-    //    }
-    //}
-
     public class LRUreplacementAlgorithm : IAlgorithm
     {
         public int GetRemoveIndex(object[] ms)
